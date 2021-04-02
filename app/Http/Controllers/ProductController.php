@@ -225,19 +225,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // gọi tới hàm destroy của laravel để xóa 1 object
-        // DELETE FROM ten_bang WHERE id = 33 -> execute command
-        $isDelete = Product::destroy($id); // return 1 | 0, true  false
+        $isDelete = Product::destroy($id); // true | false
 
-        if ($isDelete) { // xóa thành công
-            $statusCode = 200;
-            $isSuccess = true;
+        if ($isDelete) {
+            return response()->json(['success' => 1,'message' => 'Thành công']); // { 'isSuccess':1, 'message' : 'Thành công' }
         } else {
-            $statusCode = 400;
-            $isSuccess = false;
+            return response()->json(['success' => 0,'message' => 'Thất bại']);
         }
-
-        // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
-        return response()->json(['isSuccess' => $isSuccess], $statusCode);
     }
 }

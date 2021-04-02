@@ -122,7 +122,7 @@
                                     @endforeach
                                 </select>
                             </div>--}}
-                            
+
                             {{--<div class="form-group">
                                 <label>Thương hiệu</label>
                                 <select class="form-control w-50" name="brand_id">

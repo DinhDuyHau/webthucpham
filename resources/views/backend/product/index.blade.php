@@ -58,7 +58,7 @@
                                             <a href="{{ route('admin.product.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">
                                                 <i class="fa fa-pencil-square"></i>
                                             </a>
-                                            <button onclick="deleteItem('product',{{$item->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -73,4 +73,49 @@
         <!-- /.row -->
     </section>
 
+@endsection
+
+@section('my_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Thiết lập csrf => chổng giả mạo
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('.btn-delete').on('click',function () {
+
+                let id = $(this).data('id');
+
+                let result = confirm("Bạn có chắc chắn muốn xóa ?");
+
+                if (result) { // neu nhấn == ok , sẽ send request ajax
+
+                    $.ajax({
+                        url: '/admin/product/'+id, // http://webthucpham.local:8888/user/8
+                        type: 'DELETE', // phương truyền tải dữ liệu
+                        data: {
+
+                        },
+                        dataType: "json", // kiểu dữ liệu muốn nhận về
+                        success: function (res) {
+                            //  PHP : $user->name
+                            //  JS: res.name
+
+                            if (res.success != 'undefined' && res.success == 1) { // xóa thành công
+                                $('.item-'+id).remove();
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e);
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
 @endsection
