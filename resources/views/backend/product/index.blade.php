@@ -87,7 +87,7 @@
 
             $('.btn-delete').on('click',function () {
 
-                let id = $(this).data('id');
+                let id = $(this).data('id');  // = 90
 
                 let result = confirm("Bạn có chắc chắn muốn xóa ?");
 

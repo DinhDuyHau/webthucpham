@@ -228,7 +228,7 @@ class ProductController extends Controller
         $isDelete = Product::destroy($id); // true | false
 
         if ($isDelete) {
-            return response()->json(['success' => 1,'message' => 'Thành công']); // { 'isSuccess':1, 'message' : 'Thành công' }
+            return response()->json(['success' => 1,'message' => 'Thành công']); // { 'success':1, 'message' : 'Thành công' }
         } else {
             return response()->json(['success' => 0,'message' => 'Thất bại']);
         }
