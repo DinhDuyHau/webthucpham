@@ -14,7 +14,7 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <!-- general form elements -->
 
                 <div class="box box-primary">
@@ -75,7 +75,7 @@
                                         <input type="number" class="form-control" id="price" name="price"
                                                value="{{ $product->price }}">
                                     </div>
-                                    <div class="selector-wrapper">
+                                    {{--<div class="selector-wrapper">
                                         <label>Đơn vị</label>
                                         <select class="single-option-selector" data-option="option1" id="product-selectors-option-0" name="unit">
                                             <option value="0">-- chọn --</option>
@@ -84,7 +84,7 @@
                                             <option value="800g" {{ ($product->unit == '800g') ? 'selected' : '' }}>800g</option>
                                             <option value="kg" {{ ($product->unit == 'kg') ? 'selected' : '' }}>kg</option>
                                         </select>
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <!-- /.col-lg-6 -->
                                 <div class="col-lg-6">
@@ -122,7 +122,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            {{--<div class="form-group">
                                 <label>Thương hiệu</label>
                                 <select class="form-control w-50" name="brand_id">
                                     <option value="0">-- chọn Thương Hiệu--</option>
@@ -141,7 +141,7 @@
                                             {{ ($product->vendor_id == $vendor->id ? 'selected':'') }} value="{{ $vendor->id }}">{{ $vendor->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>--}}
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Vị trí</label>
@@ -194,15 +194,20 @@
     </section>
 @endsection
 
-@section('script')
+@section('my_js')
     <script type="text/javascript">
-        // $(function () {
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.height = 500;
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.width = 200;
-        // })
+
         $(function () {
+            var _ckeditor = CKEDITOR.replace('summary');
+            _ckeditor.config.height = 200; // thiết lập chiều cao
+            var _ckeditor = CKEDITOR.replace('description');
+            _ckeditor.config.height = 600; // thiết lập chiều cao
+        })
+
+
+
+
+        /*$(function () {
             var _ckeditor = CKEDITOR.replace('editor1', {
                 filebrowserBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html') }}',
                 filebrowserImageBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Images') }}',
@@ -217,7 +222,7 @@
         $(function () {
             var _ckeditor = CKEDITOR.replace('editor2');
             _ckeditor.config.height = 200;
-        })
+        })*/
 
     </script>
 @endsection
