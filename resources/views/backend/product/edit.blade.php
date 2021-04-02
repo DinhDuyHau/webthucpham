@@ -110,7 +110,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            {{--<div class="form-group">
                                 <label>Danh mục sản phẩm</label>
                                 <select class="form-control w-50" name="category_id">
                                     <option value="0">-- chọn Danh Mục --</option>
@@ -121,7 +121,8 @@
                                         @endif
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>--}}
+                            
                             {{--<div class="form-group">
                                 <label>Thương hiệu</label>
                                 <select class="form-control w-50" name="brand_id">
