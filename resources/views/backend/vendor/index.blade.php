@@ -37,30 +37,30 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $key => $item)
-                                    <tr class="item-{{ $item->id }}">
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $item -> name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone }}</td>
-                                        <td>
-                                            @if($item->image)
-{{--                                               Kiểm tra hình ảnh tồn tại --}}
-                                                <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
-                                            @endif
-                                        </td>
-                                        <td>{{ $item->website }}</td>
-                                        <td>{{ $item->address }}</td>
-                                        <td>{{ $item->position }}</td>
-                                        <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">
-                                                <i class="fa fa-pencil-square"></i>
-                                            </a>
-                                            <button onclick="deleteItem('vendor',{{$item->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($data as $key => $item)
+                                <tr class="item-{{ $item->id }}">
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $item -> name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>
+                                        @if($item->image)
+                                            {{--                                               Kiểm tra hình ảnh tồn tại --}}
+                                            <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->website }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->position }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">
+                                            <i class="fa fa-pencil-square"></i>
+                                        </a>
+                                        <button onclick="deleteItem('vendor',{{$item->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

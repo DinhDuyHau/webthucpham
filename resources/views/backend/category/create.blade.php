@@ -31,14 +31,6 @@
                                     @foreach($data as $item)
                                         <option value="{{ $item -> id }}">{{ $item -> name }}</option>
                                     @endforeach
-                                    {{--     <optgroup label="Điện thoại">
-                                             <option value="samsung">Sam Sung</option>
-                                             <option value="apple">Apple</option>
-                                         </optgroup>
-                                         <optgroup label="Tablet">
-                                             <option value="samsung">SamSung</option>
-                                             <option value="apple">Apple</option>
-                                         </optgroup>--}}
                                 </select>
                             </div>
 
@@ -73,7 +65,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Vị trí</label>
-                                <input type="number" class="form-control" id="position" name="position" value="{{ $max_position + 1 }}">
+                                <input type="number" class="form-control" id="position" name="position" value="1">
                             </div>
 
                             <div class="form-group">

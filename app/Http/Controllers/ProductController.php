@@ -17,9 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $data = Product::latest()->paginate(30);
 
-        $data = Product::all();
-        return view('backend.product.index',['data'=>$data]);
+        return view('backend.product.index',['data' => $data]);
     }
 
     /**
@@ -30,16 +30,16 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $brands = Brand::all();
-        $vendors = Vendor::all();
-        $max_position = Product::max('position');
+        //$brands = Brand::all();
+        //$vendors = Vendor::all();
+        //$max_position = Product::max('position');
 
 
         return view('backend.product.create' ,[
             'categories' => $categories,
-            'brands' => $brands,
-            'vendors' => $vendors,
-            'max_position' => $max_position
+            //'brands' => $brands,
+            //'vendors' => $vendors,
+            //'max_position' => $max_position
         ]);
     }
 
@@ -53,11 +53,12 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+            //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+           // 'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
         ]);
+
         $product = new Product();
         $product->name = $request->input('name');
         $product->slug = Str::slug($request->input('name'));
@@ -75,10 +76,8 @@ class ProductController extends Controller
         $product->sale = $request->input('sale');
         $product->category_id = $request->input('category_id');
         $product->parent_id = $request->input('parent_id');
-        $product->brand_id = $request->input('brand_id');
-        $product->vendor_id = $request->input('vendor_id');
-        $product->unit = $request->input('unit');
-
+        //$product->brand_id = $request->input('brand_id');
+        //$product->vendor_id = $request->input('vendor_id');
 
         $is_active = 0;
         if($request->has('is_active')){
@@ -105,7 +104,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        $product->addToIndex(); // thêm chỉ mục
+        //$product->addToIndex(); // thêm chỉ mục
 
         return redirect()->route('admin.product.index');
     }

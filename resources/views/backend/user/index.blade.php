@@ -3,69 +3,111 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh Sách Người Dùng <a href="{{route('admin.user.create')}}" class="btn bg-purple "><i class="fa fa-plus"></i> Thêm người dùng</a>
+            QL User <a href="{{ route('user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">QL Danh Sách - Nhà Cung Cấp</li>
+        </ol>
     </section>
+
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
                 <div class="box">
-                    <div class="box-header">
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right"
-                                       placeholder="Search">
-
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Danh Sách Người Dùng</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
+                    <div class="box-body">
+                        <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th>Họ & Tên</th>
+                                <th style="width: 10px">#</th>
+                                <th>Avatar</th>
+                                <th>Tên</th>
                                 <th>Email</th>
-                                <th>Hình ảnh</th>
-                                <th>Phân Quyền</th>
-                                <th>Trạng thái</th>
-                                <th class="text-center">Hành động</th>
+                                <th>Ngày Cấp</th>
+                                <th>Trạng Thái</th>
+                                <th>Hành Động</th>
                             </tr>
-                            </tbody>
-                            <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
+
                             @foreach($data as $key => $item)
-                                <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
+                                <tr class="item-{{ $item->id }}">
+                                    <td>{{ $key }}</td>
+                                    <td><img src="{{ asset($item->avatar) }}" width="50" /></td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>
-                                    @if ($item->avatar) <!-- Kiểm tra hình ảnh tồn tại -->
-                                        <img src="{{asset($item->avatar)}}" width="100">
-                                        @endif
-                                    </td>
-                                    <td>{{ ($item->role_id == 1) ? 'Manager' : 'Admin' }}</td>
-                                    <td>{{ ($item->is_active == 1) ? 'Kích hoạt' : 'Chưa kích hoạt' }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
-{{--                                        <a href="{{route('admin.user.edit', ['id'=> $item->id])}}" class="btn btn-info">Sửa</a>--}}
-{{--                                        <!-- Thêm sự kiện onlick cho nút xóa -->--}}
-{{--                                        <a href="javascript:void(0)" class="btn btn-danger" onclick="deleteItem('user',{{ $item->id }})" >Xóa</a>--}}
-
-                                        <a href="{{ route('admin.user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple">
-                                            <i class="fa fa-pencil-square"></i>
-                                        </a>
-                                        <button onclick="deleteItem('user',{{$item->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
+
                             @endforeach
+
+                            </tbody>
                         </table>
+
                     </div>
                     <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        {{ $data->links() }}
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>
+            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 @endsection
+
+@section('my_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Thiết lập csrf => chổng giả mạo
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('.btn-delete').on('click',function () {
+
+                let id = $(this).data('id');
+
+                let result = confirm("Bạn có chắc chắn muốn xóa ?");
+
+                if (result) { // neu nhấn == ok , sẽ send request ajax
+
+                    $.ajax({
+                        url: '/admin/user/'+id, // http://webthucpham.local:8888/user/8
+                        type: 'DELETE', // phương truyền tải dữ liệu
+                        data: {
+                            // dữ liệu truyền sang nếu có
+                            name : 'dung'
+                        },
+                        dataType: "json", // kiểu dữ liệu muốn nhận về
+                        success: function (res) {
+                            //  PHP : $user->name
+                            //  JS: res.name
+
+                            if (res.success != 'undefined' && res.success == 1) { // xóa thành công
+                                $('.item-'+id).remove();
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e);
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
+@endsection
+
+

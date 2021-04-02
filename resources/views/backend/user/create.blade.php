@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm người dùng <a href="{{route('admin.user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
+            Thêm người dùng <a href="{{route('user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
         </h1>
     </section>
 
@@ -19,23 +19,29 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.user.store')}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Chọn Quyền</label>
                                 <select class="form-control" name="role_id">
                                     <option value="" >-- chọn --</option>
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" >{{ $role->name }}</option>
-                                    @endforeach
+                                    <option value="1" >Admin</option>
+                                    <option value="2" >Manager</option>
+                                    <option value="3" >Member</option>
                                 </select>
+                                @if ($errors->has('role_id'))
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i>
+                                        {{ $errors->first('role_id') }}
+                                    </label>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Họ Tên</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ & tên">
                                 @if ($errors->has('name'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('name') }}</label>
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i>
+                                        {{ $errors->first('name') }}</label>
                                 @endif
                             </div>
                             <div class="form-group">

@@ -25,9 +25,9 @@
                             <thead>
                             <tr>
                                 <th>TT</th>
+                                <th>Hình ảnh</th>
                                 <th width="20%">Tên sản phẩm</th>
                                 <th>Danh mục</th>
-                                <th>Hình ảnh</th>
                                 <th>Người tạo</th>
                                 <th>Giá Gốc</th>
                                 <th>Giá KM</th>
@@ -41,14 +41,13 @@
                                 @foreach($data as $key => $item)
                                     <tr class="item-{{ $item->id }}">
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $item -> name }}</td>
-                                        <td>{{ @$item->category->name}}</td>
                                         <td>
                                             @if($item->image)
-                                                {{--                                               Kiểm tra hình ảnh tồn tại --}}
                                                 <img src="{{ asset($item->image) }}" width="75" height="50" alt="">
                                             @endif
                                         </td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ @$item->category->name}}</td>
                                         <td>Lịch Trần</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->sale }}</td>
@@ -74,20 +73,4 @@
         <!-- /.row -->
     </section>
 
-@endsection
-
-@section('script')
-    <script>
-        $(function () {
-            $('#example1').DataTable();
-            $('#example2').DataTable({
-                'paging'      : true,
-                'lengthChange': false,
-                'searching'   : false,
-                'ordering'    : true,
-                'info'        : true,
-                'autoWidth'   : false
-            })
-        })
-    </script>
 @endsection

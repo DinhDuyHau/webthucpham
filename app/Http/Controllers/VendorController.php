@@ -28,7 +28,7 @@ class VendorController extends Controller
     {
         $max_position = Vendor::max('position');
 
-        return view('backend.vendor.create',[
+        return view('backend_old.vendor.create',[
             'max_position' => $max_position
         ]);
     }

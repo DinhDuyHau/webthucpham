@@ -59,7 +59,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="stock">Khối lượng trong kho</label>
+                                        <label for="stock">Số lượng trong kho</label>
                                         <input type="text" class="form-control" id="stock" name="stock">
                                     </div>
                                 </div>
@@ -71,16 +71,7 @@
                                         <label for="">Giá gốc (vnđ)</label>
                                         <input type="text" class="form-control" id="price" name="price">
                                     </div>
-                                    <div class="selector-wrapper">
-                                        <label>Đơn vị</label>
-                                        <select class="single-option-selector" name="unit">
-                                            <option value="0">-- chọn --</option>
-                                            <option value="200g">200g</option>
-                                            <option value="500g">500g</option>
-                                            <option value="800g">800g</option>
-                                            <option value="kg">kg</option>
-                                        </select>
-                                    </div>
+
                                 </div>
 
                                 <div class="col-md-6">
@@ -92,21 +83,7 @@
                             </div>
                             <br>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="categoryOption">Danh mục</label>
-                                        <select class="form-control" name="parent_id">
-                                            <option value="select"> -- chọn Danh Mục --</option>
-                                            @foreach($categories as $category)
-                                                @if($category->type == 1)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -114,48 +91,14 @@
                                         <label for="categoryOption">Danh mục sản phẩm</label>
                                         <select class="form-control" name="category_id">
                                             <option value="select"> -- chọn Danh Mục --</option>
-                                            @foreach($categories as $category)
-                                                @if($category->type == 1)
+                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endif
-                                            @endforeach
+                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="brandOption">Thương hiệu</label>
-                                        <select class="form-control" name="brand_id">
-                                            <option value="select"> -- chọn Thương Hiệu --</option>
-                                            @foreach($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="vendorOption">Nhà cung cấp</label>
-                                        <select class="form-control" name="vendor_id">
-                                            <option value="select"> -- chọn Nhà Cung Cấp --</option>
-                                            @foreach($vendors as $vendor)
-                                                <option value="{{ $vendor -> id }}">{{ $vendor -> name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-
-                                </div>
-                            </div>
 
 
                             <div class="row">
@@ -163,7 +106,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Vị trí</label>
                                         <input type="number" class="form-control" id="position" name="position"
-                                               value="{{ $max_position + 1 }}">
+                                               value="1">
                                     </div>
                                 </div>
                             </div>
@@ -188,13 +131,13 @@
 
                             <div class="form-group">
                                 <label>Tóm tắt</label>
-                                <textarea id="editor2" name="summary" class="form-control" rows="3"
+                                <textarea  id="summary" name="summary" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea id="editor1" name="description" class="form-control" rows="3"
+                                <textarea id="description" name="description" class="form-control" rows="3"
                                           placeholder="Enter ..."></textarea>
                             </div>
 
@@ -217,15 +160,20 @@
     </section>
 @endsection
 
-@section('script')
+@section('my_js')
     <script type="text/javascript">
-        // $(function () {
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.height = 500;
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.width = 200;
-        // })
+
         $(function () {
+            var _ckeditor = CKEDITOR.replace('summary');
+            _ckeditor.config.height = 200; // thiết lập chiều cao
+            var _ckeditor = CKEDITOR.replace('description');
+            _ckeditor.config.height = 600; // thiết lập chiều cao
+        })
+
+
+
+
+        /*$(function () {
             var _ckeditor = CKEDITOR.replace('editor1', {
                 filebrowserBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html') }}',
                 filebrowserImageBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Images') }}',
@@ -240,7 +188,7 @@
         $(function () {
             var _ckeditor = CKEDITOR.replace('editor2');
             _ckeditor.config.height = 200;
-        })
+        })*/
 
     </script>
 @endsection

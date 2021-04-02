@@ -17,6 +17,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::latest()->paginate(20);
+
         return view('backend.order.index', [
             'data' => $orders
         ]);

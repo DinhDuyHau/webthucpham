@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::all();
+
         return view('backend.category.index', ['data' => $data]);
     }
 
@@ -27,14 +28,11 @@ class CategoryController extends Controller
     public function create()
     {
         // 1. lấy toàn bộ dữ danh mục
-        $categories = Category::all();
-
-        // 2. max postion
-        $max_position = Category::max('position');
+        $data = Category::all();
 
         return view('backend.category.create',[
-            'data' => $categories,
-            'max_position' => $max_position
+            'data' => $data,
+
         ]);
     }
 
@@ -56,8 +54,8 @@ class CategoryController extends Controller
 
         $category = new Category();
 
-        $category->name = $request->input('name');
-        $category->slug = Str::slug($request->input('name'));
+        $category->name = $request->input('name'); // Bạn cần phải nhập
+        $category->slug = Str::slug($request->input('name')); // ban-can-phai-nhap
 
         if($request->hasFile('image')){
             $file = $request->file('image');
