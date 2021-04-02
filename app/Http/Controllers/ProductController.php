@@ -75,7 +75,7 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->sale = $request->input('sale');
         $product->category_id = $request->input('category_id');
-        $product->parent_id = $request->input('parent_id');
+        //$product->parent_id = $request->input('parent_id');
         //$product->brand_id = $request->input('brand_id');
         //$product->vendor_id = $request->input('vendor_id');
 
@@ -182,10 +182,10 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->sale = $request->input('sale');
         $product->category_id = $request->input('category_id');
-        $product->parent_id = $request->input('parent_id');
-        $product->brand_id = $request->input('brand_id');
-        $product->vendor_id = $request->input('vendor_id');
-        $product->unit = $request->input('unit');
+        //$product->parent_id = $request->input('parent_id');
+//        $product->brand_id = $request->input('brand_id');
+//        $product->vendor_id = $request->input('vendor_id');
+//        $product->unit = $request->input('unit');
 
         $position = 0 ;
         if ($request->has('position')){
