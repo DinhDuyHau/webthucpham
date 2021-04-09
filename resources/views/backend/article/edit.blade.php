@@ -95,8 +95,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputSupplier">Mô tả ngắn</label>
-                                <input value="{!! $data->summary !!}" type="text" class="form-control" id="title" name="summary" placeholder="Tiêu đề tin tức">
+                                <label>Tóm tắt</label>
+                                <textarea id="editor2" name="summary" class="form-control"
+                                          rows="10">{{ $product->summary }}</textarea>
                                 @if ($errors->has('summary'))
                                     <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('summary') }}</label>
                                 @endif
