@@ -60,22 +60,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputSupplier">Mô tả ngắn</label>
-                                <input value="{!! $data->summary !!}" type="text" class="form-control" id="title" name="summary" placeholder="Tiêu đề tin tức">
-                                @if ($errors->has('summary'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('summary') }}</label>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
-                                <label>Mô tả chi tiết</label>
-                                <textarea id="editor1" name="description" class="form-control" rows="4" placeholder="Enter ...">{{ $data->description }}</textarea>
-                                @if ($errors->has('description'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('description') }}</label>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
                                 <label>Danh mục tin tức</label>
                                 <select class="form-control" name="category_id">
                                     <option value="select"> -- chọn Danh mục --</option>
@@ -105,26 +89,26 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="brandOption">Tác giả</label>
-                                        <select class="form-control" name="user_id">
-                                            <option value="select"> -- chọn tác giả --</option>
-                                            @foreach($users as $user)
-                                                <option {{ ($data->user_id == $user->id) ? 'selected' : ''}} value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="exampleInputSupplier">Điều hướng liên kết url</label>
                                 <input value="{{ $data->url }}" type="text" class="form-control" id="title" name="url" placeholder="Điều hướng tới ...">
                             </div>
 
+                            <div class="form-group">
+                                <label for="exampleInputSupplier">Mô tả ngắn</label>
+                                <input value="{!! $data->summary !!}" type="text" class="form-control" id="title" name="summary" placeholder="Tiêu đề tin tức">
+                                @if ($errors->has('summary'))
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('summary') }}</label>
+                                @endif
+                            </div>
 
+                            <div class="form-group">
+                                <label>Mô tả chi tiết</label>
+                                <textarea id="editor1" name="description" class="form-control" rows="4" placeholder="Enter ...">{{ $data->description }}</textarea>
+                                @if ($errors->has('description'))
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('description') }}</label>
+                                @endif
+                            </div>
                         </div>
                         <!-- /.box-body -->
 
@@ -143,24 +127,14 @@
     </section>
 @endsection
 
-@section('script')
+@section('my_js')
     <script type="text/javascript">
-        // $(function () {
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.height = 500;
-        //     var _ckeditor = _ckeditor.replace('editor1');
-        //     _ckeditor.config.width = 200;
-        // })
-        $(function (){
-            var _ckeditor = CKEDITOR.replace( 'editor1',{
-                filebrowserBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-            } );
-            _ckeditor.config.height = 500;
+
+        $(function () {
+            var _ckeditor = CKEDITOR.replace('summary');
+            _ckeditor.config.height = 200; // thiết lập chiều cao
+            var _ckeditor = CKEDITOR.replace('description');
+            _ckeditor.config.height = 600; // thiết lập chiều cao
         })
 
     </script>

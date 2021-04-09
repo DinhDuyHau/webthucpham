@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="option">Loai</label>
+                                <label for="option">Loại Danh Mục</label>
                                 <select class="form-control" name="type">
                                     <option value="1">Sản phẩm</option>
                                     <option value="2">Tin tức</option>

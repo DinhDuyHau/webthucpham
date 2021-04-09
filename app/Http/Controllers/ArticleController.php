@@ -29,7 +29,8 @@ class ArticleController extends Controller
     public function create()
     {
         $users = User::all();
-        $categories = Category::all();
+        // Lấy danh mục tin tức : ĐK type = 2
+        $categories = Category::where(['type' => 2])->get();
         $max_position = Article::max('position');
 
         return view('backend.article.create',[
@@ -119,16 +120,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $users = User::all();
-
-        $article = Article::all();
-
-        $categories = Category::all();
-
+        $categories = Category::where(['type' => 2])->get();
         $article = Article::findorFail($id);
+
         return view('backend.article.edit',[
            'data' => $article,
-            'users' => $users,
             'categories' => $categories
         ]);
 
