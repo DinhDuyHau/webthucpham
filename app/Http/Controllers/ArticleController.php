@@ -95,8 +95,6 @@ class ArticleController extends Controller
 
         $article->save();
 
-        $article->addToIndex(); // thêm chỉ mục tìm kiếm
-
          return redirect()->route('admin.article.index');
     }
 
