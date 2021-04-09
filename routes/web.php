@@ -45,16 +45,14 @@ Route::get('/tim-kiem', 'ShopController@search')->name('shop.search');
 Route::get('/tim-kiem-tin-tuc', 'ShopController@searchArticles')->name('shop.searchArticles');
 // Mặc định
 Route::get('/admin', 'AdminController@login')->name('admin.index');
+
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
+
 Route::post('/admin/login', 'AdminController@postLogin')->name('admin.postLogin');
+
 Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 
-//Route::group(['prefix' => 'admin', 'as' => 'admin.',/*'middleware' => 'checkLogin'*/],function (){
-
-
-
-
-Route::group(['prefix' => 'admin', 'as' => 'admin.'],function (){ // 1
+Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware' => 'checkLogin'],function (){
 
     Route::resource('banner', 'BannerController');
     Route::resource('category', 'CategoryController');

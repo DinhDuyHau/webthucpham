@@ -7,12 +7,30 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function login(){
-        return view('backend.admin.index');
+    // đăng nhập
+    public function login() {
+        return view('backend.login');
     }
 
     public function postLogin(Request $request)
     {
+        /*
+        $email =  $_POST['email'];
+        $password =  $_POST['password'];
+
+        // Tìm trong CSDL
+        $sql = "SELECT * FROM user WHERE email = $email AND password = $password;
+        $ketqua = $sql->query();
+
+        if ($ketqua) {
+         // tồn tại user thỏa mãn
+
+         => lưu thông tin đăng nhập vào session , cookie
+
+         => tragn admin
+        } else {
+            // không tồn tại => đăng nhập
+        }*/
 
         //validate dữ liệu
         $request->validate([
@@ -27,19 +45,21 @@ class AdminController extends Controller
             'password' => $request->input('password')
         ];
 
-        $checkLogin = Auth::attempt($dataLogin, $request->has('remember'));
+        $checkLogin = Auth::attempt($dataLogin, $request->has('remember')); // true/false
 
         // kiểm tra xem có đăng nhập thành công với email và password đã nhập hay không
         if ($checkLogin) {
             return redirect()->route('admin.product.index');
         }
 
-        return redirect()->back()->with('msg', ' Kiểm tra lại email hoặc mật khẩu mà bạn nhập');
+        return redirect()->back()->with('msg', 'Email hoặc password không đúng');
     }
 
     public function logout()
     {
+        // xử lý đăng xuất : xóa session và cookie
         Auth::logout();
+
         return redirect()->route('admin.login');
     }
 }

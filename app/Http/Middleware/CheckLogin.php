@@ -19,15 +19,7 @@ class CheckLogin
         // nếu user đã đăng nhập
         if (Auth::check())
         {
-            $user = Auth::user();
-            // check quyền admin && trạng thái hoạt động
-            if ($user->is_active == 1 )
-            {
-                return $next($request);
-            } else {
-                Auth::logout();
-                return redirect()->route('admin.login');
-            }
+            return $next($request);
         }
 
         return redirect()->route('admin.login');
