@@ -48,6 +48,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $input = $request->all();
+        dd($input);
         $request->validate([
             'title' => 'required|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
