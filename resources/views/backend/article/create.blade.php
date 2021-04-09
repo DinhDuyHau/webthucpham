@@ -62,9 +62,7 @@
                                 <select class="form-control" name="category_id">
                                     <option value="select"> -- chọn Danh Mục --</option>
                                     @foreach($categories as $category)
-                                        @if($category->type==2)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endif
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -83,20 +81,6 @@
                                         <label>
                                             <input type="checkbox" value="1" name="is_active"> Trạng thái hiển thị
                                         </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row hidden">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="brandOption">Tác giả</label>
-                                        <select class="form-control" name="user_id">
-                                            <option value="select"> -- chọn tác giả --</option>
-                                            @foreach($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                             </div>
