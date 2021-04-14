@@ -9,7 +9,7 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <form role="form" action="{{ route('admin.setting.update', ['id' => $setting->id ]) }}" method="post" enctype="multipart/form-data">
@@ -95,23 +95,14 @@
     </section>
 @endsection
 
-@section('script')
+@section('my_js')
     <script type="text/javascript">
-        $(function () {
-            var _ckeditor = CKEDITOR.replace('editor1', {
-                filebrowserBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('/backend/plugins/ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('/backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-            });
-            _ckeditor.config.height = 400;
-        })
 
         $(function () {
+            var _ckeditor = CKEDITOR.replace('editor1');
+            _ckeditor.config.height = 600; // thiết lập chiều cao
             var _ckeditor = CKEDITOR.replace('editor2');
-            _ckeditor.config.height = 400;
+            _ckeditor.config.height = 600; // thiết lập chiều cao
         })
 
     </script>
