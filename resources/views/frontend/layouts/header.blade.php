@@ -33,14 +33,29 @@
             <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
                 <li class="nav-item active"><a href="/" class="nav-link" style="font-weight: 600;font-size: 14px">Trang chủ</a></li>
 
-                <li class="nav-item active dropdown">
+                @foreach($categories as $cate)
+                    @if($cate->parent_id == 0)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $cate->name }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                @foreach($categories as $child)
+                                    @if($child->parent_id == $cate->id)
+                                        <a class="dropdown-item" href="shop.html">{{ $child->name }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </li>
+                    @endif
+                @endforeach
+
+                {{--<li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" style="font-weight: 600;font-size: 14px" href="" id="dropdown01" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">CỬA HÀNG</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="{{ route('shop.cart') }}">Giỏ hàng của tôi</a>
                         <a class="dropdown-item" href="{{ route('shop.cart.checkout') }}">Phương thức thanh toán</a>
                     </div>
-                </li>
+                </li>--}}
 
                 {{--@foreach($menu as $item)
                     <li class="nav-item dropdown">
@@ -71,9 +86,9 @@
                         @endforeach
                     </div>
                 </li>--}}
-                <li class="nav-item active"><a href="/san-pham" class="nav-link" style="font-weight: 600;font-size: 14px" title="Sản phẩm">Sản phẩm</a></li>
+                {{--<li class="nav-item active"><a href="/san-pham" class="nav-link" style="font-weight: 600;font-size: 14px" title="Sản phẩm">Sản phẩm</a></li>
                 <li class="nav-item active"><a href="{{ route('shop.about') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Giới thiệu</a></li>
-                <li class="nav-item active"><a href="{{ route('shop.article') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Tin tức</a></li>
+                <li class="nav-item active"><a href="{{ route('shop.article') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Tin tức</a></li>--}}
                 <li class="nav-item active"><a href="{{ route('shop.contact') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Liên hệ</a></li>
                 <li class="nav-item cta cta-colored"><a href="{{ route('shop.cart') }}" style="font-weight: 600;font-size: 14px" class="nav-link">
                         <span class="icon-shopping_cart"></span>[

@@ -10,10 +10,6 @@
 |
 */
 
-
-Route::get('/', 'HomeController@index')->name('home.index');
-
-
 Route::get('/', 'ShopController@index')->name('shop.index');
 Route::get('/404', 'ShopController@notfound')->name('shop.notfound');
 Route::get('/lien-he', 'ShopController@contact')->name('shop.contact');

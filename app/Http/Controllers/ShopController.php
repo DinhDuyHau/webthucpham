@@ -29,25 +29,25 @@ class ShopController extends GeneralController
                                 ->limit(12)
                                 ->orderBy('id','desc')
                                 ->get();
-        $categories = Category::where([
-            'is_active' => 1,
-            'parent_id' => 0
-        ])->orderBy('position', 'ASC')->get();
 
-//        dd($hotProducts);
+
 
         return view('frontend.index', [
             //'cart' => $cart,
             'banners' => $banners,
-            'hotProducts' => $hotProducts,
-            'categories' => $categories
+            'hotProducts' => $hotProducts
         ]);
     }
 
+
+    // trang liên hệ
     public function contact()
     {
         return view('frontend.contact');
     }
+
+
+
 
     public function postContact(Request $request)
     {
