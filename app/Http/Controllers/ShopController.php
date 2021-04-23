@@ -92,10 +92,14 @@ class ShopController extends GeneralController
     {
         $product = Product::where(['is_active' => 1,'slug' => $slug])->first();
 
-        $sameProducts= Product::where(['is_active'=>1],['is_hot'=>1])
-            ->limit(4)
-            ->orderBy('id','desc')
-            ->get();
+        $sameProducts  = Product::where([
+                                    ['is_active', '=', 1],
+                                    ['id','<>',$product->id],
+                                    ['category_id','=',$product->category_id]
+                                  ])->orderBy('id','desc')
+                                    ->orderBy('position','ASC')
+                                    ->limit(4)
+                                    ->get();
 
         return view('frontend.product.detail',[
             'product' => $product,
