@@ -78,7 +78,7 @@
         </div>
         <div class="container">
             <div class="row">
-                @foreach($hotProducts as $product)
+                @foreach($newProducts as $product)
                         <div class="col-md-6 col-lg-3">
                             <div class="product">
                                 <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}" class="img-prod"><img class="img-fluid" src="{{ asset($product->image)}}" alt="Colorlib Template" >

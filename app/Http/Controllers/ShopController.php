@@ -36,7 +36,7 @@ class ShopController extends GeneralController
         return view('frontend.index', [
             //'cart' => $cart,
             'banners' => $banners,
-            'hotProducts' => $products
+            'newProducts' => $products
         ]);
     }
 
