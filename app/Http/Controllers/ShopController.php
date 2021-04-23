@@ -85,13 +85,18 @@ class ShopController extends GeneralController
         ]);
     }
 
-    public function detailProduct($slug){
+    /*
+     * Chi tiết sản phẩn - dịch vụ
+     */
+    public function detailProduct($slug)
+    {
         $product = Product::where(['is_active' => 1,'slug' => $slug])->first();
 
         $sameProducts= Product::where(['is_active'=>1],['is_hot'=>1])
             ->limit(4)
             ->orderBy('id','desc')
             ->get();
+
         return view('frontend.product.detail',[
             'product' => $product,
             'sameProducts' => $sameProducts

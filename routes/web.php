@@ -15,7 +15,8 @@ Route::get('/404', 'ShopController@notfound')->name('shop.notfound');
 Route::get('/lien-he', 'ShopController@contact')->name('shop.contact');
 Route::post('/lien-he', 'ShopController@postContact')->name('shop.postContact');
 Route::get('/san-pham', 'ShopController@product')->name('shop.product');
-Route::get('/chi-tiet-sp/{slug}', 'ShopController@detailProduct')->name('shop.productDetails');
+Route::get('/chi-tiet-san-pham/{slug}', 'ShopController@detailProduct')->name('shop.productDetail');
+
 Route::get('/danh-muc/{slug}', 'ShopController@category')->name('shop.category');
 Route::get('/thuong-hieu/{slug}', 'ShopController@brand')->name('shop.brand');
 Route::get('/gio-hang', 'CartController@index')->name('shop.cart');
