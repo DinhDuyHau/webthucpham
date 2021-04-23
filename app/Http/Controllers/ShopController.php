@@ -25,17 +25,18 @@ class ShopController extends GeneralController
         $banners = Banner::where('is_active', 1)->orderBy('position', 'ASC')
             ->orderBy('id', 'DESC')->get();
 
-        $hotProducts= Product::where(['is_active'=>1],['is_hot'=>1])
-                                ->limit(12)
+        $products  = Product::where(['is_active'=>1])->limit(12)
                                 ->orderBy('id','desc')
+                                ->orderBy('position','ASC')
                                 ->get();
 
+        dd($products);
 
 
         return view('frontend.index', [
             //'cart' => $cart,
             'banners' => $banners,
-            'hotProducts' => $hotProducts
+            'hotProducts' => $products
         ]);
     }
 
