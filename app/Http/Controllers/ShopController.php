@@ -25,12 +25,12 @@ class ShopController extends GeneralController
         $banners = Banner::where('is_active', 1)->orderBy('position', 'ASC')
             ->orderBy('id', 'DESC')->get();
 
-        $products  = Product::where(['is_active'=>1])->limit(12)
+        // Lấy sản mởi nhất
+        $products  = Product::where(['is_active'=>1])
                                 ->orderBy('id','desc')
                                 ->orderBy('position','ASC')
+                                ->limit(12)
                                 ->get();
-
-        dd($products);
 
 
         return view('frontend.index', [
