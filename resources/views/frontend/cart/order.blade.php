@@ -69,46 +69,12 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="cart-detail p-3 p-md-4">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <div class="checkbox">
-                                                        <label><input type="checkbox" value="" class="mr-2"> Tôi đã đọc và chấp nhận chính sách mua hàng.</label>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <p><button type="submit" class="btn btn-primary py-3 px-4">Đặt Hàng</button></p>
                                         </div>
                                     </div>
                                 </div>
                             </form><!-- END -->
                         </div>
-                        <div class="col-xl-5">
-                            <div class="row mt-5 pt-3">
-                                <div class="col-md-12 d-flex mb-5">
-                                    <div class="cart-detail cart-total p-3 p-md-4">
-                                        <h3 class="billing-heading mb-4">Đơn hàng</h3>
-                                        <p class="d-flex">
-                                            <span>Số lượng SP</span>
-                                            <span>{{ $totalCount }}</span>
-                                        </p>
-                                        <p class="d-flex">
-                                            <span>Thanh toán</span>
-                                            <span class="">{{ $totalPrice }} đ</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <p>
-                                        <a href="/gio-hang" class="btn btn-black py-2 px-2">
-                                            <span class="icon-shopping_cart"></span> Xem giỏ hàng
-                                        </a>
-                                        <a href="/" class="btn btn-warning py-2 px-2" style="float: right">
-                                            <i class="icon-long-arrow-right"></i> Tiếp tục mua hàng
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div> <!-- .col-md-8 -->
                     @else
                         {{ session('msg') ? session('msg') : '' }}
                     @endif

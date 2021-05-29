@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <section class="ftco-section">
+    <section class="ftco-section list-product">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-10 mb-5 text-center">
@@ -24,12 +24,6 @@
                                     href="{{route('shop.brand', ['slug'=> $brand->slug]) }}"><img
                                         src="{{ asset($brand->image) }}" alt="" width="80px"></a></li>
                         @endforeach
-
-                        {{--<li style="margin: 0px 20px 0px 20px;border: 1px solid #eee;"><a href=""><img src="frontend/images/bactom_logo.png" alt="" width="100px"></a></li>
-                        <li style="margin: 0px 20px 0px 20px;border: 1px solid #eee;"><a href=""><img src="frontend/images/logo_dalatgap.png" alt="" width="80px"></a></li>
-                        <li style="margin: 0px 20px 0px 20px;border: 1px solid #eee;"><a href=""><img src="frontend/images/organica_logo.png" alt="" width="100px"></a></li>
-                        <li style="margin: 0px 20px 0px 20px;border: 1px solid #eee;"><a href=""><img src="frontend/images/rau-cuoi-viet-nhat-logo.jpg" alt="" width="100px"></a></li>
-                        <li style="margin: 0px 20px 0px 20px;border: 1px solid #eee;"><a href=""><img src="frontend/images/ravi.png" alt="" width="75px"></a></li>--}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="true" aria-expanded="false">Sắp xếp</a>
@@ -70,19 +64,6 @@
                                     </li>
                                 @endif
                             @endforeach
-                            {{--@foreach($list as $item)
-                                <li class="treeview">
-                                    <a href="--}}{{--{{ route('shop.category', ['slug' => $item->slug]) }}--}}{{--"></i> {{ $item['category']->name }}</a>
-                                    @foreach($listCat as $child)
-                                        --}}{{-- @if($child->parent_id == $item->id)--}}{{--
-                                        @if($child['category']->parent_id == $item['category']->id)
-                                            <ul id="demo" class="collapse">
-                                                <li><a href="--}}{{--{{ route('shop.category', ['slug' => $child->slug]) }}--}}{{--" style="color: black">{{$child['category']->name}}</a></li>
-                                            </ul>
-                                        @endif
-                                    @endforeach
-                                </li>
-                            @endforeach--}}
                         </ul>
                     </div>
                     <div id="title" class="col-sm-12">
@@ -106,14 +87,14 @@
                     @foreach($products_by_cat as $product)
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}"
+                                <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}"
                                    class="img-prod"><img class="img-fluid" src="{{ asset($product->image)}}"
                                                          alt="Colorlib Template">
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3 text-center">
                                     <h3>
-                                        <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}">{{ $product->name }}</a>
+                                        <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}">{{ $product->name }}</a>
                                     </h3>
                                     <div class="d-flex">
                                         <div class="pricing">
@@ -123,7 +104,7 @@
                                     </div>
                                     <div class="bottom-area d-flex px-3">
                                         <div class="m-auto d-flex">
-                                            <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}"
+                                            <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}"
                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                 <ion-icon name="information-outline" size="small"></ion-icon>
                                             </a>
@@ -141,14 +122,14 @@
                         @foreach($products_by_cat_child as $product)
                             <div class="col-md-6 col-lg-3 ftco-animate">
                                 <div class="product">
-                                    <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}"
+                                    <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}"
                                        class="img-prod"><img class="img-fluid" src="{{ asset($product->image)}}"
                                                              alt="Colorlib Template">
                                         <div class="overlay"></div>
                                     </a>
                                     <div class="text py-3 pb-4 px-3 text-center">
                                         <h3>
-                                            <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}">{{ $product->name }}</a>
                                         </h3>
                                         <div class="d-flex">
                                             <div class="pricing">
@@ -158,7 +139,7 @@
                                         </div>
                                         <div class="bottom-area d-flex px-3">
                                             <div class="m-auto d-flex">
-                                                <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}"
+                                                <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}"
                                                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                     <ion-icon name="information-outline" size="small"></ion-icon>
                                                 </a>

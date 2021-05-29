@@ -47,9 +47,6 @@ class ShopController extends GeneralController
         return view('frontend.contact');
     }
 
-
-
-
     public function postContact(Request $request)
     {
         //validate
@@ -69,20 +66,6 @@ class ShopController extends GeneralController
         $contact->content = $request->input('content');
         $contact->save();
         return redirect()->route('shop.contact')->with('msg', 'Bạn đã gửi tin nhắn thành công');
-    }
-
-    public function product(){
-
-        $brands = Brand::where(['is_active' => 1])->get();
-
-        $products = Product::where(['is_active' => 1])
-            ->orderBy('id', 'desc')
-            ->paginate(12);
-
-        return view('frontend.product.all_product',[
-            'brands' => $brands,
-            'products' => $products
-        ]);
     }
 
     /*
@@ -107,8 +90,8 @@ class ShopController extends GeneralController
         ]);
     }
 
-    public function category($slug){
-
+    public function category($slug)
+    {
         $category = Category::where(['slug' => $slug])->first();
 
         $brands = Brand::where(['is_active' => 1])->get();
@@ -121,7 +104,7 @@ class ShopController extends GeneralController
             ->orderBy('id', 'desc')
             ->paginate(12);
 
-        return view('frontend.product.cat',[
+        return view('frontend.product.list',[
             'products_by_cat' => $products_by_cat,
             'products_by_cat_child' => $products_by_cat_child,
             'brands' => $brands,
@@ -207,15 +190,13 @@ class ShopController extends GeneralController
             'slug' => $slug,
             'is_active' => '1'
         ])->first();
-//        if(!$article){
-//            return view('errors.404');
-//        }
+
         return view('frontend.article.article_detail',[
             'article' => $article
         ]);
     }
 
-    public function searchOld(Request $request)
+    public function search(Request $request)
     {
         // b1. Lấy từ khóa tìm kiếm
         $keyword = $request->input('tu-khoa');
@@ -238,7 +219,8 @@ class ShopController extends GeneralController
         ]);
     }
 
-    public function search(Request $request)
+    // Tìm kiếm nâng cao sử dụng ES
+    public function searchEs(Request $request)
     {
         // b1. Lấy từ khóa tìm kiếm
         $keyword = $request->input('tu-khoa');

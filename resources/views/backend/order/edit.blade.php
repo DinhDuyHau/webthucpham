@@ -128,11 +128,11 @@
                             </tbody>
                             <!-- Lặp một mảng dữ liệu pass sang view để hiển thị -->
                             @foreach($order->details as $key => $item)
-                                <tr class="item-{{ $item->id }}"> <!-- Thêm Class Cho Dòng -->
+                                <tr class=""> <!-- Thêm Class Cho Dòng -->
                                     <td>{{ $key }}</td>
                                     <td>
-                                        <a href="{{route('admin.product.edit', ['id'=> $item->product_id])}}">
-                                            {{ substr($item->name, 0, 50) }}
+                                        <a target="_blank" href="{{route('admin.product.edit', ['id'=> $item->product_id])}}">
+                                            $item->name
                                         </a>
                                     </td>
                                     <td>

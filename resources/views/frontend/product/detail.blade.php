@@ -60,7 +60,7 @@
                             @endif
                         </div>
                     </div>
-                    <p><a  title="Add to cart" href="{{ route('shop.cart.add-to-cart', ['id' => $product->id]) }}" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+                    <p><a  title="Thêm sản phẩm vào giỏ hàng" href="{{ route('shop.cart.add-to-cart', ['id' => $product->id]) }}" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
                 </div>
             </div>
 

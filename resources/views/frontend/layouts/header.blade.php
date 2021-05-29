@@ -9,8 +9,6 @@
                         <span class="text">{{ $setting->phone }}</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
-                        {{--<div class="icon mr-2 d-flex justify-content-center align-items-center"><span
-                                class="icon-paper-plane"></span></div>--}}
                         <span class="text"></span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
@@ -36,11 +34,11 @@
                 @foreach($categories as $cate)
                     @if($cate->parent_id == 0)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $cate->name }}</a>
+                            <a class="nav-link dropdown-toggle" href="{{ route('shop.category', ['slug' => $cate->slug]) }}" id="dropdown04" data-toggle="dropdown">{{ $cate->name }}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
                                 @foreach($categories as $child)
                                     @if($child->parent_id == $cate->id)
-                                        <a class="dropdown-item" href="shop.html">{{ $child->name }}</a>
+                                        <a class="dropdown-item" href="{{ route('shop.category', ['slug' => $child->slug]) }}">{{ $child->name }}</a>
                                     @endif
                                 @endforeach
                             </div>
@@ -48,52 +46,13 @@
                     @endif
                 @endforeach
 
-                {{--<li class="nav-item active dropdown">
-                    <a class="nav-link dropdown-toggle" style="font-weight: 600;font-size: 14px" href="" id="dropdown01" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">CỬA HÀNG</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{ route('shop.cart') }}">Giỏ hàng của tôi</a>
-                        <a class="dropdown-item" href="{{ route('shop.cart.checkout') }}">Phương thức thanh toán</a>
-                    </div>
-                </li>--}}
-
-                {{--@foreach($menu as $item)
-                    <li class="nav-item dropdown">
-                        @if($item->parent_id == 0)
-                    <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $item->name }}</a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdown02">
-                                @foreach($menu as $child)
-                                    @if($child->parent_id == $item->id)
-                                        <a class="dropdown-item" href="{{ route('shop.shop') }}" title="Cửa hàng">{{$child->name}}</a>
-                                    @endif
-                                @endforeach
-                            </div>
-                        @endif
-                    </li>
-                @endforeach--}}
-
-                {{--<li class="nav-item active dropdown">
-
-                    <a class="nav-link active dropdown-toggle" style="font-weight: 600;font-size: 14px" href="" id="dropdown02" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">SẢN PHẨM</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown02">
-                        @foreach($menu as $item)
-                            @if($item->parent_id == 0 && $item->type == 1)
-                                <a class="dropdown-item" href="{{ route('shop.category', ['slug' => $item->slug]) }}"
-                                   title="{{ $item->name }}">{{ $item->name }}</a>
-                            @endif
-                        @endforeach
-                    </div>
-                </li>--}}
-                {{--<li class="nav-item active"><a href="/san-pham" class="nav-link" style="font-weight: 600;font-size: 14px" title="Sản phẩm">Sản phẩm</a></li>
-                <li class="nav-item active"><a href="{{ route('shop.about') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Giới thiệu</a></li>
-                <li class="nav-item active"><a href="{{ route('shop.article') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Tin tức</a></li>--}}
                 <li class="nav-item active"><a href="{{ route('shop.contact') }}" class="nav-link" style="font-weight: 600;font-size: 14px">Liên hệ</a></li>
-                <li class="nav-item cta cta-colored"><a href="{{ route('shop.cart') }}" style="font-weight: 600;font-size: 14px" class="nav-link">
-                        <span class="icon-shopping_cart"></span>[
-                        {{ !empty(session('totalItem')) ? session('totalItem') : 0 }}
-                        ]</a></li>
+                <li class="nav-item cta cta-colored">
+                    <a href="{{ route('shop.cart') }}" style="font-weight: 600;font-size: 14px" class="nav-link">
+                        <span class="icon-shopping_cart"></span>
+                        [{{ !empty(session('totalItem')) ? session('totalItem') : 0 }}]
+                    </a>
+                </li>
 
             </ul>
             <form action="{{ route('shop.search') }}" method="GET" class="search-form-cat">

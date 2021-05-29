@@ -14,23 +14,30 @@ Route::get('/', 'ShopController@index')->name('shop.index');
 Route::get('/404', 'ShopController@notfound')->name('shop.notfound');
 Route::get('/lien-he', 'ShopController@contact')->name('shop.contact');
 Route::post('/lien-he', 'ShopController@postContact')->name('shop.postContact');
-Route::get('/san-pham', 'ShopController@product')->name('shop.product');
-Route::get('/chi-tiet-san-pham/{slug}', 'ShopController@detailProduct')->name('shop.productDetail');
 
-Route::get('/danh-muc/{slug}', 'ShopController@category')->name('shop.category');
+Route::get('/danh-sach-san-pham/{slug}', 'ShopController@category')->name('shop.category');
+Route::get('/chi-tiet-san-pham/{slug}', 'ShopController@detailProduct')->name('shop.productDetail');
 Route::get('/thuong-hieu/{slug}', 'ShopController@brand')->name('shop.brand');
+
+// Danh sách sản phẩm trong giỏ hàng
 Route::get('/gio-hang', 'CartController@index')->name('shop.cart');
+
 // Thêm sản phẩm vào giỏ hàng
 Route::get('/gio-hang/them-sp-vao-gio-hang/{product_id}', 'CartController@addToCart')->name('shop.cart.add-to-cart');
+
 // Xóa SP khỏi giỏ hàng
 Route::get('/gio-hang/xoa-sp-gio-hang/{id}', 'CartController@removeToCart')->name('shop.cart.remove-to-cart');
 // Cập nhật giỏ hàng
 Route::get('/gio-hang/cap-nhat-so-luong-sp', 'CartController@updateToCart')->name('shop.cart.update-to-cart');
 // Hủy đơn đặt hàng
 Route::get('/gio-hang/huy-don-hang', 'CartController@destroy')->name('shop.cart.destroy');
+
 Route::get('/dat-hang', 'CartController@order')->name('shop.cart.order');
+
 Route::post('/dat-hang', 'CartController@postOrder')->name('shop.cart.postOrder');
+
 Route::get('/dat-hang/hoan-tat-dat-hang', 'CartController@completedOrder')->name('shop.cart.completedOrder');
+
 Route::get('/thanh-toan', 'CartController@checkout')->name('shop.cart.checkout');
 Route::get('/gioi-thieu', 'ShopController@about')->name('shop.about');
 Route::get('/chinh-sach-bao-mat', 'ShopController@private')->name('shop.privacy_policy');
@@ -95,7 +102,7 @@ Route::get('/lien-he', 'ShopController@contact')->name('shop.contact');
 Route::post('/lien-he', 'ShopController@postContact')->name('shop.postContact');
 
 Route::get('/san-pham', 'ShopController@product')->name('shop.product');
-Route::get('/chi-tiet-sp/{slug}', 'ShopController@detailProduct')->name('shop.productDetails');
+Route::get('/chi-tiet-sp/{slug}', 'ShopController@detailProduct')->name('shop.productDetail');
 
 Route::get('/danh-muc/{slug}', 'ShopController@category')->name('shop.category');
 

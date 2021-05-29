@@ -23,7 +23,6 @@
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">Menu</h2>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('shop.product') }}" class="py-2 d-block">Cửa hàng</a></li>
                         <li><a href="{{ route('shop.about') }}" class="py-2 d-block">Về chúng tôi</a></li>
                         <li><a href="{{ route('shop.article') }}" class="py-2 d-block">Bài viết</a></li>
                         <li><a href="{{ route('shop.contact') }}" class="py-2 d-block">Liên lạc với chúng tôi</a></li>

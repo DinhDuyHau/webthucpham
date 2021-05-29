@@ -63,12 +63,15 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
+        // lấy chi tiết đơn hàng
         $order = Order::find($id);
-        $order_status = OrderStatus::all();
+        // lấy tât cả trạng thái đơn hàng lưu trong database, cái này chưa có chức năng quản trị
+        // các em về làm thêm chức năng Create,update, edit,..
+         $order_status = OrderStatus::all();
 
         return view('backend.order.edit', [
             'order' => $order,
-            'order_status' => $order_status
+             'order_status' => $order_status
         ]);
     }
 

@@ -159,9 +159,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Elasticquent\ElasticquentServiceProvider::class,
         // import thư viên giỏ hàng
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Elasticquent\ElasticquentServiceProvider::class,
     ],
 
     /*
@@ -212,6 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // khai bai alias tới thư viện giỏ hàng
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
         'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
     ],
 

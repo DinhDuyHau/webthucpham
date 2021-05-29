@@ -30,11 +30,7 @@
                 border-radius: 5px;
             }
         </style><br>
-        @if(session('msg'))
-            <h3 class="text-center"><i class="fa fa-opencart"></i>{{ session('msg') ? session('msg') : '' }}</h3>
-        @else
-            <h3 class="text-center"><i class="fa fa-opencart"></i>Bạn chưa có đơn hàng mới nào</h3>
-        @endif
+        <h3 class="text-center"><i class="fa fa-opencart"></i>Cảm ơn bạn đã đặt hàng</h3>
         <a href="/" class="buyother"><i class="fa fa-chevron-left"></i> Về trang chủ</a>
     </div>
 @endsection

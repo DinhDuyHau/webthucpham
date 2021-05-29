@@ -14,7 +14,6 @@
                         <div class="col-md-12 text-center">
                             <h1 class="mb-2">{{$banner->title}}</h1>
                             <h2 class="subheading mb-4">Chúng tôi cung cấp các loại rau, củ &amp; hoa quả hữu cơ</h2>
-                            <p><a href="{{ route('shop.product') }}" class="btn btn-primary">Chi tiết</a></p>
                         </div>
 
                     </div>

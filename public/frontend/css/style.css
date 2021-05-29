@@ -10093,3 +10093,17 @@ h3:before {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+.product {
+    position: relative;
+    height: 350px;
+}
+
+.product .text {
+    position: absolute;
+    bottom: 0px;
+}
+
+.list-product .product {
+    height: 300px;
+}

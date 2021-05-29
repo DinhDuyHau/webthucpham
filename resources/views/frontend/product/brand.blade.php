@@ -87,11 +87,11 @@
                     @foreach($products_by_brand as $product)
                         <div class="col-md-6 col-lg-3 ftco-animate">
                             <div class="product">
-                                <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}" class="img-prod"><img class="img-fluid" src="{{ asset($product->image)}}" alt="Colorlib Template">
+                                <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}" class="img-prod"><img class="img-fluid" src="{{ asset($product->image)}}" alt="Colorlib Template">
                                     <div class="overlay"></div>
                                 </a>
                                 <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}">{{ $product->name }}</a></h3>
+                                    <h3><a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}">{{ $product->name }}</a></h3>
                                     <div class="d-flex">
                                         <div class="pricing">
                                             <p class="price"><span class="mr-2 price-dc">{{ number_format($product->price) }} đ</span><span>{{ number_format($product->sale) }} đ</span></p>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="bottom-area d-flex px-3">
                                         <div class="m-auto d-flex">
-                                            <a href="{{ route('shop.productDetails',['slug' => $product->slug]) }}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                            <a href="{{ route('shop.productDetail',['slug' => $product->slug]) }}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                 <ion-icon name="information-outline" size="small"></ion-icon>
                                             </a>
                                             <a href="{{ route('shop.cart.add-to-cart', ['id' => $product->id]) }}" class="buy-now d-flex justify-content-center align-items-center mx-1">

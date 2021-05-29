@@ -1,4 +1,4 @@
-@if(count($cart))
+@if(count($cart) > 0)
     <section class="ftco-section ftco-cart">
         <div class="container">
             <h2 style="text-align: center; color: #82ae46">THÔNG TIN GIỎ HÀNG</h2>
@@ -85,20 +85,18 @@
                 // xóa sản phẩm khỏi giỏ hàng
                 $(document).on("click", '.remove-to-cart', function () {
                     var result = confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng ?");
-                    if (result) {
-                        var product_id = $(this).attr('data-id');
+
+                    if (result == true) {
+                        var rowId = $(this).attr('data-id'); // 9a34a635a736b8ed53f234e3b7ad738e
                         $.ajax({
-                            url: '/gio-hang/xoa-sp-gio-hang/' + product_id,
+                            url: '/gio-hang/xoa-sp-gio-hang/' + rowId,
                             type: 'get',
                             data: {
-                                id: product_id
+                                id: rowId
                             }, // dữ liệu truyền sang nếu có
                             dataType: "HTML", // kiểu dữ liệu trả về
                             success: function (response) {
                                 $('#my-cart').html(response);
-                            },
-                            error: function (e) { // lỗi nếu có
-                                console.log(e.message);
                             }
                         });
                     }
@@ -106,13 +104,18 @@
 
                 // cập nhật số lượng của từng sản phẩm trong giỏ hàng
                 $(document).on("click", '.update-qty', function (e) {
-                    var rowId = $(this).attr('data-id');
-                    var qty = $(this).closest('.quantity').find('.item-qty').val(); // lấy số lượng của ô input
+                    var rowId = $(this).attr('data-id'); // a9d4048ab5a0c0e0505f43a6834097f2
+
+                    var input = $(this) // <nút cập nhât >
+                                .parent('.quantity') // cha <td class="quantity"
+                                .find('.item-qty'); // <input name="qty"
+
+                    var so_luong = input.val(); // so lương
+
 
                     // Kiểm tra Nếu không phải là số nguyên Hoặc số lượng < 1
-                    if (isNaN(qty) || qty < 1) {
+                    if (isNaN(so_luong) || so_luong < 1) {
                         alert("Số lượng là số nguyên lớn hơn >= 1");
-                        $(this).closest('.quantity').find('.item-qty').val(1);
                         return false;
                     }
 
@@ -121,16 +124,13 @@
                         type: 'get',
                         data: {
                             rowId: rowId,
-                            qty: qty
+                            qty: so_luong
                         }, // dữ liệu truyền sang nếu có
                         dataType: "HTML", // kiểu dữ liệu trả về
                         success: function (response) {
                             if (response != false) {
                                 $('#my-cart').html(response);
                             }
-                        },
-                        error: function (e) { // lỗi nếu có
-                            console.log(e.message);
                         }
                     });
                 });
