@@ -47,6 +47,7 @@ class CartController extends GeneralController
             'price' => $product->sale,
             'options' => [
                 'image' => $product->image,
+                //'size' => ..
                 // ....
             ]
         ];

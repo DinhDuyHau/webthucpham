@@ -7,13 +7,13 @@
         <!-- Hoạt ảnh động -->
         <div class="home-slider owl-carousel">
             @foreach($banners as $banner)
-                <div class="slider-item" style="background-image: url({{ asset($banner->image) }});">
+                <div class="slider-item" style="background-image: url({{asset($banner->image) }});">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                         <div class="col-md-12 text-center">
                             <h1 class="mb-2">{{$banner->title}}</h1>
-                            <h2 class="subheading mb-4">Chúng tôi cung cấp các loại rau, củ &amp; hoa quả hữu cơ</h2>
+                            <h2 class="subheading mb-4">Chúng tôiiii cung cấp các loại rau, củ &amp; hoa quả hữu cơ</h2>
                         </div>
 
                     </div>
